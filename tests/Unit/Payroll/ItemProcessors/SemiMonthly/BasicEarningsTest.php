@@ -25,12 +25,11 @@ class BasicEarningsTest extends TestCase
         $subject = $this->mock(Subject::class, function ($mock) {
             $mock->shouldReceive('getMonthlyRate')->andReturn(40000);
 
-            $period = new PayPeriod();
-            $period->date_from = Carbon::createFromDate(2018, 1, 1);          
+            $period = PayPeriod::fromDateStrings("2018-01-11", "2018-01-25");       
             $mock->shouldReceive('getPeriod')->andReturn($period);
 
             $employee = new Employee();
-            $employee->employment_started_at = Carbon::createFromDate(2000, 1, 1);
+            $employee->employment_started_at = Carbon::parse("2001-01-01");
             $mock->shouldReceive('getEmployee')->andReturn($employee);
         });
         $payroll_item = $this->processor->generatePayrollItem($subject);
@@ -49,9 +48,7 @@ class BasicEarningsTest extends TestCase
         $subject = $this->mock(Subject::class, function ($mock) {
             $mock->shouldReceive('getMonthlyRate')->andReturn(14093.83);
             
-            $period = new PayPeriod();
-            $period->date_from = Carbon::parse("2018-07-26");
-            $period->date_to = Carbon::parse("2018-08-10");
+            $period = PayPeriod::fromDateStrings("2018-07-26", "2018-08-10");
             $mock->shouldReceive('getPeriod')->andReturn($period);
 
             $employee = new Employee();

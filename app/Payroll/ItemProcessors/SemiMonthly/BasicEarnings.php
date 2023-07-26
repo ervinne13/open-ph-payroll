@@ -47,6 +47,8 @@ class BasicEarnings implements PayrollItemGenerator
         $days_in_period = $period->date_from->diffInDays($period->date_to) + 1;
         $hire_date_days = $employee->employment_started_at->diffInDays($period->date_to) + 1;
 
+        // TODO: Study diffInDaysFiltered later.
+
         $pay = new EmployeePayrollItem();
         $pay->amount = ($rate / $days_in_period) * $hire_date_days;
         return $pay;
