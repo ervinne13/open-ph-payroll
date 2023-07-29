@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use App\Models\PayPeriod;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,7 +24,8 @@ class PayPeriod extends Model
         return $period;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return "[{$this->date_from} - {$this->date_to}]";
     }
 }
