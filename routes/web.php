@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Payroll\PayslipStaging;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
 use App\Http\Livewire\Auth\Passwords\Email;
@@ -56,5 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)
         ->name('logout');
 
-    Route::view('/payslip/staging', 'payroll/payslip/staging')->name('payslip-staging');
+    Route::get('/payslip/staging', [PayslipStaging::class, 'index'])
+        ->name('payslip.staging');
 });
